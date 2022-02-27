@@ -15,15 +15,30 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         child: Container(
           width: double.infinity,
-          child: ListView(
+          child: Stack(
             children: [
-              Column(
+              Positioned(
+                top: -90,
+                left: -90,
+                // child: Container(),
+                child: circleLogin(),
+              ),
+              Positioned(
+                top: 60,
+                left: 25,
+                child: textLogin(),
+              ),
+              ListView(
                 children: [
-                  imageBanner(),
-                  textFieldEmail(),
-                  textFieldPassword(),
-                  buttonLogin(),
-                  rowDonotRememberAccount(),
+                  Column(
+                    children: [
+                      imageBanner(),
+                      textFieldEmail(),
+                      textFieldPassword(),
+                      buttonLogin(),
+                      rowDonotRememberAccount(),
+                    ],
+                  ),
                 ],
               ),
             ],
@@ -33,12 +48,29 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget textLogin() {
+    return Text("Login",style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),);
+  }
+
+  Widget circleLogin() {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: myColors.primaryColor),
+      width: 240,
+      height: 240,
+      // color: myColors.primaryColor,
+      child: null,
+    );
+  }
+
   Widget imageBanner() {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01, bottom: MediaQuery.of(context).size.height * 0.1),
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.2,
+          bottom: MediaQuery.of(context).size.height * 0.1),
       child: Image.asset(
         'assets/img/delivery2.png',
-        
         width: 200,
         height: 200,
       ),
@@ -68,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget textFieldPassword() {
-     return Container(
+    return Container(
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
         color: myColors.primaryOpacityColor,
